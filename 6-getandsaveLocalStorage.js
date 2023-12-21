@@ -8,6 +8,7 @@ function saveList(arr, keyName) {
 }
 
 //получаем данные из локал сторедж
+listName = '';
 let localData = localStorage.getItem(listName);
 console.log("данные из локал сторедж " + localData);
 //проверяем есть ли данные в локалсторедж, если есть то распарсиваем строку хранящуюся
