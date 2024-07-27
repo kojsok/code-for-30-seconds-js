@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Example</title>
+</head>
+<body>
+    <div id="content">Loading...</div>
+    <button id="loadDataBtn">Load Data</button>
+
+    <script>
+        // Функция, имитирующая загрузку данных с сервера с использованием Promise
+        function fetchData() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const success = true; // Меняем на false для тестирования reject
+                    if (success) {
+                        resolve("Data loaded successfully!");
+                    } else {
+                        reject("Failed to load data.");
+                    }
+                }, 2000); // Имитируем задержку в 2 секунды
+            });
+        }
+
+        document.getElementById('loadDataBtn').addEventListener('click', () => {
+            const contentDiv = document.getElementById('content');
+            
+            // Отображаем сообщение о начале загрузки данных
+            contentDiv.textContent = "Loading data...";
+
+            fetchData()
+                .then(data => {
+                    // Обновляем DOM с полученными данными при успешной загрузке
+                    contentDiv.textContent = data;
+                })
+                .catch(error => {
+                    // Отображаем сообщение об ошибке при неудачной загрузке
+                    contentDiv.textContent = error;
+                });
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+Объяснение кода:
+HTML-структура:
+
+div с id="content" для отображения загружаемых данных.
+button с id="loadDataBtn" для запуска загрузки данных.
+JavaScript:
+
+fetchData(): Функция, которая возвращает Promise. Внутри Promise используется setTimeout, чтобы имитировать задержку при загрузке данных с сервера. В зависимости от значения success (true или false), вызывается либо resolve, либо reject.
+Event Listener для кнопки: При нажатии на кнопку запускается процесс загрузки данных. Сначала обновляется содержимое div с сообщением "Loading data...".
+Promise Handling: Используются .then() и .catch() для обработки успешной и неудачной загрузки данных соответственно. В случае успешной загрузки обновляется содержимое div с полученными данными. В случае ошибки выводится сообщение об ошибке.
+Этот пример демонстрирует основное использование Promise в контексте работы с DOM и может быть расширен для более сложных сценариев. -->
