@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+}
+.posts {
+    width: 50%;
+}
+
+.postList {
+    margin-bottom: 20px;
+}
+
+.comments {
+    width: 50%;
+    margin-left: 20px;
+}
